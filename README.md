@@ -1,6 +1,26 @@
 # Password Strength Calculator
 
-[TODO. There will be project description]
+Скрипт проверяет введённый пользователем пароль на стойкость и выдаёт оценку от 1 до 10
+
+# Quickstart
+
+
+Скрипт требует для своей работы установленный интерпретатор Python версии 3.5
+
+Запуск на Linux:
+
+```#!bash
+
+$ python password_strength.py
+
+```
+Запуск на Windows происходит аналогично.
+
+Пример вывода скрипта:
+```
+Введите пароль для проверки: VeryStrongP@$$w0rd
+Оценка сложности пароля:  10
+```
 
 # Project Goals
 
