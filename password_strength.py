@@ -4,7 +4,7 @@ def check_blacklist(password):
     return password in blacklist
 
 
-def get_lenght_score(password):
+def get_length_score(password):
     password_length = len(password)
     if password_length >= 12:
         return 3
@@ -26,7 +26,7 @@ def get_password_strength(password):
     if any(char in password for char in symbols):
         password_score += 2
 
-    password_score += get_lenght_score(password)
+    password_score += get_length_score(password)
 
     return password_score
 
