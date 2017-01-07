@@ -23,6 +23,7 @@ def check_patterns(password):
         pattern = re.compile(pattern)
         if pattern.fullmatch(password):
             return -3
+    return 0
 
 
 def get_length_score(password):
