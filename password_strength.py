@@ -14,6 +14,17 @@ def check_blacklist(password, path):
     return password in blacklist
 
 
+def check_patterns(password):
+    patterns = ['\+?[0-9\-()\s]+',  # номер телефона
+                '\w+\@\w+\.\w+',  # e-mail
+                '([0-9]{1,4}[\\/.\s]?){3}'  # дата
+                ]
+    for pattern in patterns:
+        pattern = re.compile(pattern)
+        if pattern.fullmatch(password):
+            return -3
+
+
 def get_length_score(password):
     password_length = len(password)
     if password_length >= 12:
@@ -27,10 +38,6 @@ def get_length_score(password):
 
 def get_password_strength(password):
     symbols = ".,:;!?@$%^&*()_+-="
-    patterns = ['\+?[0-9\-()\s]+',  # номер телефона
-                '\w+\@\w+\.\w+',  # e-mail
-                '([0-9]{1,4}[\\/.\s]?){3}'  # дата
-                ]
     password_score = 1
 
     if any(char.isdigit() for char in password):
@@ -40,15 +47,10 @@ def get_password_strength(password):
     if any(char in password for char in symbols):
         password_score += 2
 
-    for pattern in patterns:
-        pattern = re.compile(pattern)
-        if pattern.fullmatch(password):
-            password_score -= 3
-
     password_score += get_length_score(password)
+    password_score += check_patterns(password)
     if password_score < 1:
         password_score = 1
-
     return password_score
 
 
